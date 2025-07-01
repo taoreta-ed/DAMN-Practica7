@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permisos necesarios para la aplicación -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" /> <!-- Este permiso es para versiones antiguas de Android -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/> <!-- Para Android 13+ -->
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,16 +18,48 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DAMNPractica7">
+        android:theme="@style/Theme.DAMNPractica7"
+        tools:targetApi="31">
+
+        <!-- Actividad principal para autenticación (login/registro) -->
         <activity
-            android:name=".MainActivity"
+            android:name=".AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Actividad principal después de la autenticación -->
+        <activity android:name=".HomeActivity" />
+
+        <!-- Actividad para ver y crear publicaciones en una comunidad específica -->
+        <activity android:name=".CommunityPostsActivity" />
+
+        <!-- Actividad para crear una nueva publicación -->
+        <activity android:name=".CreatePostActivity" />
+
+        <!-- Actividad para gestionar el perfil del usuario -->
+        <activity android:name=".ProfileActivity" />
+
+        <!-- Servicio para Firebase Cloud Messaging (FCM) -->
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- Metadatos para el tema por defecto de notificaciones (opcional pero recomendado) -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification" /> <!-- Asegúrate de tener este icono en tus drawables -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/purple_200" /> <!-- Define este color en colors.xml -->
+
     </application>
 
 </manifest>

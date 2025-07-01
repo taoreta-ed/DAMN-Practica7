@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.messaging.FirebaseMessaging // <-- Importar esto
 
 /**
  * AuthActivity es la actividad principal para el registro y el inicio de sesión de usuarios.
@@ -37,6 +38,22 @@ class AuthActivity : AppCompatActivity() {
         // Obtener la instancia de FirebaseAuth
         auth = FirebaseAuth.getInstance()
 
+        // --- INICIO: Añadir este bloque para obtener y loguear el token de FCM ---
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("AuthActivity", "Fetching FCM registration token failed", task.exception)
+                return@addOnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+            // Log and toast
+            Log.d("AuthActivity", "FCM Token: $token")
+            Toast.makeText(baseContext, "FCM Token: $token", Toast.LENGTH_LONG).show()
+        }
+        // --- FIN: Bloque añadido ---
+
+
         // Configurar el listener para el botón de registro
         binding.btnRegister.setOnClickListener {
             registerUser()
@@ -47,6 +64,8 @@ class AuthActivity : AppCompatActivity() {
             loginUser()
         }
     }
+
+    // ... el resto de tu código de AuthActivity ...
 
     /**
      * Se llama cuando la actividad se inicia.

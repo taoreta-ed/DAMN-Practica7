@@ -55,7 +55,7 @@
         <!-- Metadatos para el tema por defecto de notificaciones (opcional pero recomendado) -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_notification" /> <!-- Asegúrate de tener este icono en tus drawables -->
+            android:resource="@drawable/ic_notification" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/purple_200" /> <!-- Define este color en colors.xml -->

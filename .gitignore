@@ -1,0 +1,64 @@
+# Built application files
+*.apk
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+build/
+.gradle/
+.idea/
+captures/
+.externalNativeBuild/
+
+# Local configuration files (Android Studio)
+local.properties
+.DS_Store
+.cxx/
+cmake-build-debug/
+
+# User-specific preferences (Android Studio)
+.ide/
+
+# Keystore files
+*.jks
+*.keystore
+
+# Google Services file (important to ignore for security)
+google-services.json
+
+# Crashlytics/Firebase specific files
+crashlytics-build.properties
+
+# Gradle
+.gradle
+!gradle-wrapper.jar
+
+# Kotlin
+**/*.kotlin_module
+.kotlin_gradle/
+.idea/libraries/
+.idea/modules.xml
+
+# NDK
+obj/
+
+# Exclude some files created by Android Studio for specific projects.
+# Refer to https://developer.android.com/studio/projects/multi-module#project_files
+.idea/workspace.xml
+.idea/libraries
+
+# Other
+proguard/
+outputs/
+coverage/
+
+# Windows
+Thumbs.db
